@@ -1,0 +1,8 @@
+1. activate virtual envo
+>> .bot\scripts\activate
+
+2. move to project file
+>> cd edubotg
+
+3. run project
+>> python main.py
