@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartSphere</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script> <!-- Link your JS file -->
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <h1>SmartSphere</h1>
+        </div>
+        <div class="dropdown">
+            <div class="user-icon" onclick="toggleDropdown()">
+                {{ session['username'][0].upper() }}
+            </div>
+            <div class="dropdown-content" id="dropdownMenu">
+                <a href="javascript:void(0)" onclick="toggleProfile()">Profile</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h2>Welcome to SmartSphere!</h2>
+        <p>Interact, explore, and experience AI-powered chat features.</p>
+        <button onclick="displayAlert()">Start Chatting</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2025 SmartSphere. All rights reserved.</p>
+    </div>
+
+    <!-- Profile Modal -->
+<div id="profileModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeProfile()">&times;</span>
+        <h2>Edit Profile</h2>
+        
+        <!-- Profile Edit Form -->
+        <form method="POST" action="{{ url_for('profile') }}">
+            <p><strong>Username:</strong> <input type="text" name="username" value="{{ user.username }}"></p>
+            <p><strong>Email:</strong> <input type="email" name="email" value="{{ user.email }}"></p>
+            <p><button type="submit">Update Profile</button></p>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
