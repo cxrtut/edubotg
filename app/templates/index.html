@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartSphere</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon-16x16.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon-16x16.png') }}" type="image/x-icon">
+
+    <link rel="stylesheet" href="/static/css/index.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar collapsed">
+           <div class="buttons">
+            <button class="toggle-btn" onclick="toggleNav()">📜</button>  
+            <button class="toggle-btn" onclick="toggleNav()">💬</button>
+           </div>
+            <ul class="nav-options">
+              
+            {% if history["Today"] %}
+                <h3>Today</h3>
+                <ul>
+                    {% for conversation in history["Today"] %}
+                        <li><a href="{{ url_for('auth.conversation_detail', conversation_id=conversation.id) }}">{{ conversation.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        
+            {% if history["This Month"] %}
+                <h3>This Month</h3>
+                <ul>
+                    {% for conversation in history["This Month"] %}
+                        <li><a href="{{ url_for('auth.conversation_detail', conversation_id=conversation.id) }}">{{ conversation.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        
+            {% if history["Previous Months"] %}
+                <h3>Previous Months</h3>
+                {% for month, conversations in history["Previous Months"].items() %}
+                    <h4>{{ month }}</h4>
+                    <ul>
+                        {% for conversation in conversations %}
+                            <li><a href="{{ url_for('auth.conversation_detail', conversation_id=conversation.id) }}">{{ conversation.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            {% endif %}
+        
+            {% if history["Years"] %}
+                {% for year, conversations in history["Years"].items() %}
+                    <h4>{{ year }}</h4>
+                    <ul>
+                        {% for conversation in conversations %}
+                            <li><a href="{{ url_for('auth.conversation_detail', conversation_id=conversation.id) }}">{{ conversation.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            {% endif %}
+            </ul>
+        </div>
+
+        <!-- Right Main Content -->
+        <div class="main-content">
+            <div class="top-bar">
+                <div class="auth-options collapsed">
+                    <button onclick="toggleAuth()">☰sldfagvfhashilkvfshaifc</button>
+                    <ul>
+                        <li>Sign In</li>
+                        <li>Sign Up</li> 
+                    </ul>
+                </div>
+            </div>
+
+            <div class="landing">
+                <h1>SmartSphere</h1>
+                <p class="slogan">Your World of Smart Solutions.</p>
+                <div class="chat-box">
+                    <h2>Welcome to SMARTSPHERE</h2>
+                    <input type="text" placeholder="Type your message here..." />
+                    <button>Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/javascripts/index.js"></script>
+</body>
+</html>

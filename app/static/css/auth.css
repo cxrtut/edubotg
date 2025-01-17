@@ -1,0 +1,116 @@
+/* General Body Reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Login Box */
+.login-box {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px 40px;
+    width: 350px; /* Fixed width for better consistency */
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 15%;
+    color: #000;
+    font-size: 28px;
+}
+
+/* Input Fields */
+.input-group {
+    position: relative;
+    margin-bottom: 25px; /* Increased margin between fields */
+    text-align: left;
+}
+
+/* Label Style */
+.input-group label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #555;
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Input Field Style */
+.input-group input {
+    width: 100%;
+    padding: 15px 10px 10px;
+    padding-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Input Focus Style */
+.input-group input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Floating Label Effect */
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -10px; 
+    font-size: 16px;
+    color: #007bff;
+}
+
+/* Button Style */
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Button Hover Style */
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Error Message Style */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .login-box {
+        width: 90%; 
+    }
+
+    
+    .input-group input {
+        font-size: 14px; 
+    }
+}
