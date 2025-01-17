@@ -1,21 +1,138 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
-%}
-<h1 align="center">Notes</h1>
-<ul class="list-group list-group-flush" id="notes">
-  {% for note in user.notes %}
-  <li class="list-group-item">
-    {{ note.data }}
-    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </li>
-  {% endfor %}
-</ul>
-<form method="POST">
-  <textarea name="note" id="note" class="form-control"></textarea>
-  <br />
-  <div align="center">
-    <button type="submit" class="btn btn-primary">Add Note</button>
-  </div>
-</form>
+{% extends "base.html" %}
+{% block title %}EduBot - Empower Your Learning{% endblock %}
+{% block content %}
+
+<div class="container text-center mt-5">
+  <!-- Hero Section -->
+  <div class="py-5">
+    <h1 class="display-4 fw-bold">Welcome to SmartSphere</h1>
+    <p class="lead text-muted">
+      Your AI-powered assistant for smarter, faster, and more personalized learning.
+    </p>
+
+    <div id="chat-container" style="display: none; height: 50vh; overflow-y: auto; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 10px; padding: 10px;">
+      <p>Lets chat!</p>
+    </div>
+
+    <div class="input-group mt-4 mx-auto" style="max-width: 600px;">
+      <input 
+        type="text" 
+        id="chat-input"
+        class="form-control form-control-lg" 
+        placeholder="Ask me anything or search for topics..." 
+        aria-label="Search"
+      />
+      <button id="chat-send" class="btn btn-dark btn-lg" type="button"><i class="bi bi-send-fill"></i></button>
+    </div>
+   <!-- File Upload Buttons -->
+<div class="mt-4">
+  <button class="btn btn-outline-dark" onclick="triggerFileInput('documentInput')">
+    <i class="bi bi-paperclip"></i>
+  </button>
+  <input 
+    id="documentInput" 
+    type="file" 
+    style="display: none;" 
+    accept=".pdf,.doc,.docx" 
+    onchange="handleFileSelection(event, 'document')" 
+  />
+
+  <button class="btn btn-outline-dark" onclick="triggerFileInput('imageInput')">
+    <i class="bi bi-file-image"></i>
+  </button>
+  <input 
+    id="imageInput" 
+    type="file" 
+    style="display: none;" 
+    accept="image/*" 
+    onchange="handleFileSelection(event, 'image')" 
+  />
+
+  <button class="btn btn-outline-dark" onclick="triggerFileInput('fileInput')">
+    <i class="bi bi-folder-symlink"></i>
+  </button>
+  <input 
+    id="fileInput" 
+    type="file" 
+    style="display: none;" 
+    onchange="handleFileSelection(event, 'file')" 
+  />
+</div>
+
+
+{% endblock %}
+{% block javascript %}
+    <script type="text/javascript">
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const chatContainer = document.getElementById('chat-container');
+        const chatInput = document.getElementById('chat-input');
+        const chatSend = document.getElementById('chat-send');
+      
+        function appendChatBubble(message, isBot = false) {
+          const bubble = document.createElement('div');
+          bubble.className = `chat-bubble ${isBot ? 'bot' : 'user'}`;
+          bubble.textContent = message;
+      
+          // Add styles to the bubble
+        
+      
+          chatContainer.appendChild(bubble);
+          chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll to the latest message
+        }
+      
+        chatSend.addEventListener('click', () => {
+          const userMessage = chatInput.value.trim();
+          if (!userMessage) return;
+      
+          // Make chat container visible if hidden
+          if (chatContainer.style.display === 'none') {
+            chatContainer.style.display = 'block';
+          }
+      
+          // Append user's message
+          appendChatBubble(userMessage);
+      
+          // Clear input
+          chatInput.value = '';
+      
+          // Append bot's response after a short delay
+          setTimeout(() => {
+            appendChatBubble('Hi there!', true);
+          }, 500);
+        });
+      
+        chatInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            chatSend.click();
+          }
+        });
+      });
+
+    // Trigger file input when button is clicked
+function triggerFileInput(inputId) {
+  document.getElementById(inputId).click();
+}
+
+// Handle file selection
+function handleFileSelection(event, fileType) {
+  const file = event.target.files[0];
+  if (file) {
+    // Show the hidden container if not already visible
+    const chatContainer = document.getElementById("chat-container");
+    chatContainer.style.display = "block";
+
+    // Create a chat bubble
+    const chatBubble = document.createElement("div");
+    chatBubble.className = `chat-bubble ${fileType}`;
+
+    // Add file details to the chat bubble
+    chatBubble.textContent = `${fileType.toUpperCase()} uploaded: ${file.name}`;
+
+    // Append the chat bubble to the container
+    chatContainer.appendChild(chatBubble);
+  }
+}
+
+</script>
 {% endblock %}

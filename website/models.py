@@ -1,18 +1,24 @@
 from . import db
+from datetime import datetime
 from flask_login import UserMixin
-from sqlalchemy.sql import func
 
-
-class Note(db.Model):
+class Clients(db.Model, UserMixin ):
     id = db.Column(db.Integer, primary_key=True)
-    data = db.Column(db.String(10000))
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    username = db.Column(db.String(50))
+    password = db.Column(db.String(50))
 
-
-class User(db.Model, UserMixin):
+class Conversation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(150), unique=True)
-    password = db.Column(db.String(150))
-    first_name = db.Column(db.String(150))
-    notes = db.relationship('Note')
+    user_id = db.Column(db.Integer, db.ForeignKey('clients.id'), nullable=False)
+    title = db.Column(db.String(255), nullable=False)  
+    conversation_date = db.Column(db.Date, default=datetime.utcnow)  
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)  
+    messages = db.relationship('Message', backref='conversation', lazy=True)
+
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    conversation_id = db.Column(db.Integer, db.ForeignKey('conversation.id'), nullable=False)
+    sender = db.Column(db.String(255), nullable=False)  
+    message_content = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
