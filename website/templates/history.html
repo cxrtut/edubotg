@@ -1,0 +1,49 @@
+<div class="sidebar collapsed">
+    <div class="buttons">
+     <button class="toggle-btn" onclick="toggleNav()">📜</button>  
+     <button class="toggle-btn" onclick="toggleNav()">💬</button>
+    </div>
+     <ul class="nav-options">
+       
+     {% if history["Today"] %}
+         <h3>Today</h3>
+         <ul>
+             {% for conversation in history["Today"] %}
+                 <li><a href="{{ url_for('auth.conversation_detail', conversation_id=conversation.id) }}">{{ conversation.title }}</a></li>
+             {% endfor %}
+         </ul>
+     {% endif %}
+ 
+     {% if history["This Month"] %}
+         <h3>This Month</h3>
+         <ul>
+             {% for conversation in history["This Month"] %}
+                 <li><a href="{{ url_for('auth.conversation_detail', conversation_id=conversation.id) }}">{{ conversation.title }}</a></li>
+             {% endfor %}
+         </ul>
+     {% endif %}
+ 
+     {% if history["Previous Months"] %}
+         <h3>Previous Months</h3>
+         {% for month, conversations in history["Previous Months"].items() %}
+             <h4>{{ month }}</h4>
+             <ul>
+                 {% for conversation in conversations %}
+                     <li><a href="{{ url_for('auth.conversation_detail', conversation_id=conversation.id) }}">{{ conversation.title }}</a></li>
+                 {% endfor %}
+             </ul>
+         {% endfor %}
+     {% endif %}
+ 
+     {% if history["Years"] %}
+         {% for year, conversations in history["Years"].items() %}
+             <h4>{{ year }}</h4>
+             <ul>
+                 {% for conversation in conversations %}
+                     <li><a href="{{ url_for('auth.conversation_detail', conversation_id=conversation.id) }}">{{ conversation.title }}</a></li>
+                 {% endfor %}
+             </ul>
+         {% endfor %}
+     {% endif %}
+     </ul>
+ </div>

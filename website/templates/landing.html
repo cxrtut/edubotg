@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to SmartSphere{% endblock %}
+
+{% block content %}
+<div class="landing-container">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to SmartSphere</h1>
+            <p>Your gateway to smarter solutions, seamless communication, and AI-driven innovations.</p>
+            <div class="hero-buttons">
+                <a href="/login" class="btn btn-primary">Log In</a>
+                <a href="/signup" class="btn btn-secondary">Sign Up</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="{{ url_for('static', filename='images/android-chrome-192x192.png') }}" alt="SmartSphere">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Why Choose SmartSphere?</h2>
+        <div class="features-list">
+            <div class="feature">
+                <img src="{{ url_for('static', filename='images/picture1.jpg') }}" alt="Feature 1">
+                <h3>AI-Powered Insights</h3>
+                <p>Leverage cutting-edge AI technology to make informed decisions and simplify complex tasks.</p>
+            </div>
+            <div class="feature">
+                <img src="{{ url_for('static', filename='images/picture2.jpg') }}" alt="Feature 2">
+                <h3>Seamless Integration</h3>
+                <p>Integrate effortlessly with your existing tools and workflows.</p>
+            </div>
+            <div class="feature">
+                <img src="{{ url_for('static', filename='images/picture3.jpg') }}" alt="Feature 3">
+                <h3>User-Friendly Interface</h3>
+                <p>Experience an intuitive and beautifully designed interface tailored for everyone.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="landing-footer">
+        <p>&copy; 2025 SmartSphere. All rights reserved.</p>
+    </footer>
+</div>
+{% endblock %}

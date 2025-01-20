@@ -25,7 +25,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 30px 40px;
-    width: 350px; /* Fixed width for better consistency */
+    width: 350px; 
     text-align: center;
 }
 
@@ -38,7 +38,7 @@ body {
 /* Input Fields */
 .input-group {
     position: relative;
-    margin-bottom: 25px; /* Increased margin between fields */
+    margin-bottom: 25px; 
     text-align: left;
 }
 
@@ -83,7 +83,7 @@ body {
 .btn {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #2575fc;
     color: white;
     border: none;
     border-radius: 5px;
