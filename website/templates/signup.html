@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - SmartSphere</title>
+    <title>Sign Up - SmartSphere</title>
 
     <link rel="icon" href="{{ url_for('static', filename='images/favicon-16x16.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon-16x16.png') }}" type="image/x-icon">
@@ -12,14 +12,14 @@
 </head>
 <body>
     <div class="login-container">
-        <div class="login-box">
-            <h2>Welcome Back</h2>
+        <div class="login-box"> 
+            <h2>Welcome To SmartSphere</h2>
             <!-- Email Input Section -->
             <div id="email-section">
                 <form id="email-form">
                     <div class="input-group">
                         <input type="email" id="email" name="email" placeholder=" " required>
-                         <label for="email">Email address</label>
+                        <label for="email">Email address</label>
                     </div>
                     <button type="submit" class="btn">Next</button>
                 </form>
@@ -34,18 +34,22 @@
                         <label for="user_email">Email address</label>
                     </div>
                     <div class="input-group">
+                        <input type="text" id="username" name="username" placeholder=" " required>
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="input-group">
                         <input type="password" id="password" name="password" placeholder=" " required>
                         <label for="password">Password</label>
                     </div>
-                    <button type="submit" class="btn">Login</button>
+                    <button type="submit" class="btn">SignUp</button>
                 </form>
                 <p id="password-error" class="error-message"></p>
             </div>
             
 
-            <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+            <p>Already have an account? <a href="/login">Login</a></p>
         </div>
     </div>
-    <script src="/static/javascript/login.js"></script>
+    <script src="/static/javascript/signup.js"></script>
 </body>
 </html>
