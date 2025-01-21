@@ -54,3 +54,26 @@ body
     background-color: rgb(240, 240, 240);
 }
 
+.navbar-nav
+{
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+
+}
+
+.log_contain
+{
+    display: flex;
+}
+.logo_contain > h5
+{
+    color: #fff;
+}
+.logo_contain
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

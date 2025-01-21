@@ -5,8 +5,15 @@
 <div class="container text-center mt-5">
   <!-- Hero Section -->
   <div class="py-5">
-    <h1 class="display-4 fw-bold">Welcome to SmartSphere</h1>
+
+    
+    {% if user.is_authenticated %}
+    <h1 class="display-4 fw-bold">Welcome User </h1>
+    {% else %}  
+    <h1 class="display-4 fw-bold">Welcome Guest! </h1>
+    {% endif %}
     <p class="lead text-muted">
+    
       Your AI-powered assistant for smarter, faster, and more personalized learning.
     </p>
 
@@ -24,9 +31,10 @@
       />
       <button id="chat-send" class="btn btn-dark btn-lg" type="button"><i class="bi bi-send-fill"></i></button>
     </div>
-   <!-- File Upload Buttons -->
+ 
+    {% if user.is_authenticated %}   <!-- File Upload Buttons -->
 <div class="mt-4">
-  <button class="btn btn-outline-dark" onclick="triggerFileInput('documentInput')">
+  <button class="btn btn-secondary" onclick="triggerFileInput('documentInput')">
     <i class="bi bi-paperclip"></i>
   </button>
   <input 
@@ -37,7 +45,7 @@
     onchange="handleFileSelection(event, 'document')" 
   />
 
-  <button class="btn btn-outline-dark" onclick="triggerFileInput('imageInput')">
+  <button class="btn btn-secondary" onclick="triggerFileInput('imageInput')">
     <i class="bi bi-file-image"></i>
   </button>
   <input 
@@ -48,7 +56,7 @@
     onchange="handleFileSelection(event, 'image')" 
   />
 
-  <button class="btn btn-outline-dark" onclick="triggerFileInput('fileInput')">
+  <button class="btn btn-secondary" onclick="triggerFileInput('fileInput')">
     <i class="bi bi-folder-symlink"></i>
   </button>
   <input 
@@ -58,6 +66,42 @@
     onchange="handleFileSelection(event, 'file')" 
   />
 </div>
+{% else %}
+<div class="mt-4">
+  <button class="btn btn-outline-dark" disabled onclick="triggerFileInput('documentInput')">
+    <i class="bi bi-paperclip"></i>
+  </button>
+  <input 
+    id="documentInput" 
+    type="file" 
+    style="display: none;" 
+    accept=".pdf,.doc,.docx" 
+    onchange="handleFileSelection(event, 'document')" 
+  />
+
+  <button class="btn btn-outline-dark disabled" disabled onclick="triggerFileInput('imageInput')">
+    <i class="bi bi-file-image"></i>
+  </button>
+  <input 
+    id="imageInput" 
+    type="file" 
+    style="display: none;" 
+    accept="image/*" 
+    onchange="handleFileSelection(event, 'image')" 
+  />
+
+  <button class="btn btn-outline-dark " disabled onclick="triggerFileInput('fileInput')">
+    <i class="bi bi-folder-symlink"></i>
+  </button>
+  <input 
+    id="fileInput" 
+    type="file" 
+    style="display: none;" 
+    onchange="handleFileSelection(event, 'file')" 
+  />
+</div>
+<p class="">Login to access these Features and More!!!</p>
+{% endif %}
 
 
 {% endblock %}
@@ -99,7 +143,7 @@
           // Append bot's response after a short delay
           setTimeout(() => {
             appendChatBubble('Hi there!', true);
-          }, 500);
+          }, 1000);
         });
       
         chatInput.addEventListener('keypress', (e) => {
