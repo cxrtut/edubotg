@@ -4,7 +4,7 @@
 
 {% block content %}
 <!-- Inherits navigation and profile modal from profile.html -->
-<h1 class="text-center">Notes</h1>
+
 <ul class="list-group list-group-flush" id="notes">
     {% for note in user.notes %}
     <li class="list-group-item">
@@ -15,12 +15,11 @@
     </li>
     {% endfor %}
 </ul>
-<form method="POST">
-    <textarea name="note" id="note" class="form-control"></textarea>
-    <br />
-    <div class="text-center">
-        <button type="submit" class="btn btn-primary">Add Note</button>
-    </div>
-</form>
+<!-- Main Content -->
+<div class="main-content">
+    <h2>Welcome to SmartSphere!</h2>
+    <p>Interact, explore, and experience AI-powered chat features.</p>
+    
+</div>
 {% endblock %}
 
