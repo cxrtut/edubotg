@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeProfileModal()">&times;</span>
+            <h2>User Profile</h2>
+            <form method="POST" action="{{ url_for('auth.profile') }}">
+                <p><strong>Username:</strong> <input type="text" name="username" value="{{ user.first_name }}"></p>
+                <p><strong>Email:</strong> <input type="email" name="email" value="{{ user.email }}"></p>
+                <p><button type="submit">Update Profile</button></p>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
